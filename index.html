@@ -10,6 +10,106 @@
 </head>
 <body>
 
+    /* Basic Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5; /* Light background for scrolling effect */
+}
+
+.jumbotron {
+  background-image: url('https://images.unsplash.com/photo-1507605456435-36109388f770?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'); /* Header background image */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Project Carousel Styling */
+.project-carousel {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+.project-card {
+  display: inline-block; /* Allows horizontal positioning */
+  width: 300px; /* Adjust width as needed */
+  margin: 0 10px; 
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add a subtle shadow */
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.project-content {
+  padding: 15px;
+}
+
+/* Background Scrolling Effect */
+#projects {
+  background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f8470d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+#projects::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1507605456435-36109388f770?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Place behind content */
+  opacity: 0.4; /* Make it semi-transparent */
+}
+
+#projects::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1534082306549-a9c409757139?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'); /* Another background image */
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.4;
+  transform: translateY(100%); /* Initially off-screen */
+  transition: transform 0.5s ease; /* Smooth transition */
+}
+
+#projects:target::after { /* When section is scrolled to */
+  transform: translateY(0%); /* Bring background image into view */
+}
+
+/* Scrollbar Styling (Optional) */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f5f5f5; 
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  border-radius: 10px;
+}
+
+
+
+
+    
+
     <header class="jumbotron jumbotron-fluid bg-dark text-light">
         <div class="container">
             <h1 class="display-4">Somnath Dutta</h1>
@@ -45,62 +145,40 @@
         </div>
     </section>
 
-    <section class="bg-light py-5">
+    <section class="bg-light py-5" id="projects">
         <div class="container">
             <h2 class="text-center mb-4">My Projects</h2>
             <div class="row">
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow-sm rounded"> 
-                        <div class="card-body p-4"> 
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
-                                    class="img-fluid rounded" alt="Project 1">
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="card-title mb-3">Scalable Data Ingestion Framework</h5>
-                                    <p class="card-text">Developed a REST API-based data ingestion framework for efficient and scalable data loading. Utilized technologies like Spark and Kafka to ensure high throughput and reliability.</p>
-                                    <a href="#" class="btn btn-primary">View Details</a>
-                                </div>
+                <div class="col-md-12">
+                    <div class="project-carousel">
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
+                            class="img-fluid rounded" alt="Project 1">
+                            <div class="project-content">
+                                <h5 class="card-title mb-3">Scalable Data Ingestion Framework</h5>
+                                <p class="card-text">Developed a REST API-based data ingestion framework for efficient and scalable data loading. Utilized technologies like Spark and Kafka to ensure high throughput and reliability.</p>
+                                <a href="#" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow-sm rounded"> 
-                        <div class="card-body p-4"> 
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img src="https://images.unsplash.com/photo-1542831371-294d0d21650b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
-                                    class="img-fluid rounded" alt="Project 2">
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="card-title mb-3">Real-time Data Analysis Platform</h5>
-                                    <p class="card-text">Implemented a real-time data analysis platform using Spark Streaming and Kafka for near-instant insights. Developed dashboards using Databricks for interactive visualization.</p>
-                                    <a href="#" class="btn btn-primary">View Details</a>
-                                </div>
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1542831371-294d0d21650b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
+                            class="img-fluid rounded" alt="Project 2">
+                            <div class="project-content">
+                                <h5 class="card-title mb-3">Real-time Data Analysis Platform</h5>
+                                <p class="card-text">Implemented a real-time data analysis platform using Spark Streaming and Kafka for near-instant insights. Developed dashboards using Databricks for interactive visualization.</p>
+                                <a href="#" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow-sm rounded"> 
-                        <div class="card-body p-4"> 
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img src="https://images.unsplash.com/photo-1551288049-5c44b1d4b004?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
-                                    class="img-fluid rounded" alt="Project 3">
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="card-title mb-3">Data Warehouse Optimization</h5>
-                                    <p class="card-text">Optimized data warehouse performance by leveraging Snowflake's advanced features and best practices. Implemented data partitioning and indexing strategies for efficient data retrieval.</p>
-                                    <a href="#" class="btn btn-primary">View Details</a>
-                                </div>
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1551288049-5c44b1d4b004?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
+                            class="img-fluid rounded" alt="Project 3">
+                            <div class="project-content">
+                                <h5 class="card-title mb-3">Data Warehouse Optimization</h5>
+                                <p class="card-text">Optimized data warehouse performance by leveraging Snowflake's advanced features and best practices. Implemented data partitioning and indexing strategies for efficient data retrieval.</p>
+                                <a href="#" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -111,7 +189,7 @@
             <h2 class="text-center mb-4">Get in Touch</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <p class="mb-4">Feel free to reach out for any inquiries or collaboration opportunitie.</p>
+                    <p class="mb-4">Feel free to reach out for any inquiries or collaboration opportunities.</p>
                     <ul class="list-inline">
                         <li class="list-inline-item"><a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a></li>
                         <li class="list-inline-item"><a href="#" class="text-light"><i class="fab fa-github"></i></a></li>
