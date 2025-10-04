@@ -1,125 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somnath Dutta - Data Engineer Portfolio</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Somnath Dutta — Senior Data Engineer</title>
+  <meta name="description" content="Portfolio of Somnath Dutta — Senior Data Engineer. Expertise in Databricks, PySpark, Snowflake, Azure, Airflow, Kubernetes. Projects: AI SQL Chatbot, Notebook Summarizer, CDP, Energy Optimization." />
+  <meta name="theme-color" content="#0f172a" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Somnath Dutta — Senior Data Engineer" />
+  <meta property="og:description" content="Databricks • PySpark • Snowflake • Azure • Airflow • Kubernetes • LLM/GenAI" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/000000?v=4" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220; /* slate-950 */
+      --surface:#0f172a; /* slate-900 */
+      --muted:#94a3b8; /* slate-400 */
+      --text:#e2e8f0; /* slate-200 */
+      --brand:#22c55e; /* green-500 */
+      --brand-2:#60a5fa; /* blue-400 */
+      --chip:#1e293b; /* slate-800 */
+      --card:#0b1220; /* deep */
+      --ring:rgba(96,165,250,0.4);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;scroll-behavior:smooth}
+    a{color:var(--brand-2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:rgba(11,18,32,0.7);border-bottom:1px solid #1f2937;z-index:50}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand-2),var(--brand));font-weight:800;color:#0b1220}
+    .nav-links a{margin-left:18px;font-weight:500;color:#cbd5e1}
+    .nav-links a:hover{color:#fff}
+
+    .hero{display:grid;grid-template-columns:1.2fr 0.8fr;gap:28px;align-items:center;padding:48px 0}
+    .tag{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0f172a,#111827);border:1px solid #1f2937;color:#cbd5e1;padding:6px 12px;border-radius:999px;font-size:12px}
+    h1{font-size:44px;line-height:1.1;margin:16px 0 10px}
+    .lead{color:#cbd5e1;font-size:18px}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:12px;border:1px solid #1f2937;background:#111827;color:#e5e7eb;font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--brand-2),var(--brand));color:#0b1220;border:none}
+    .btn:hover{box-shadow:0 0 0 3px var(--ring)}
+    .hero-card{background:linear-gradient(135deg,rgba(34,197,94,0.07),rgba(96,165,250,0.06));border:1px solid #1f2937;padding:24px;border-radius:16px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .chip{background:var(--chip);border:1px solid #1f2937;color:#cbd5e1;padding:6px 10px;border-radius:999px;font-size:12px}
+
+    section{padding:28px 0}
+    .section-title{font-size:22px;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.grid.cols-3{grid-template-columns:1fr 1fr}}
+    @media (max-width:660px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
+
+    .card{background:linear-gradient(180deg,rgba(15,23,42,0.9),rgba(2,6,23,0.9));border:1px solid #1f2937;border-radius:16px;padding:18px}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .muted{color:var(--muted)}
+    .list{margin:8px 0 0;padding:0 0 0 18px}
+    .pill{font-size:11px;border:1px solid #1f2937;background:#0b1220;padding:4px 8px;border-radius:999px}
+
+    .timeline{position:relative;padding-left:24px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:#1f2937}
+    .timeline-item{position:relative;margin-bottom:16px}
+    .timeline-item::before{content:"";position:absolute;left:-1px;top:4px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--brand-2),var(--brand));box-shadow:0 0 0 3px rgba(96,165,250,0.25)}
+
+    footer{margin-top:40px;border-top:1px solid #1f2937;background:#0a1020}
+    .foot{display:grid;gap:12px;grid-template-columns:2fr 1fr}
+    @media (max-width:780px){.foot{grid-template-columns:1fr}}
+    .tiny{font-size:12px;color:#94a3b8}
+    .social a{margin-right:12px}
+
+    /* Subtle fade-in */
+    [data-animate]{opacity:0;transform:translateY(8px);animation:fadeIn 0.8s ease forwards}
+    [data-animate].delay-1{animation-delay:.1s}
+    [data-animate].delay-2{animation-delay:.2s}
+    [data-animate].delay-3{animation-delay:.3s}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+  </style>
+  <script>
+    // Reveal on load
+    window.addEventListener('DOMContentLoaded',()=>{
+      document.querySelectorAll('[data-animate]').forEach(el=>el.classList.add('show'))
+    })
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Somnath Dutta",
+    "jobTitle": "Senior Data Engineer",
+    "url": "https://somhit15.github.io/",
+    "email": "mailto:somhit15@gmail.com",
+    "sameAs": [
+      "https://github.com/somhit15",
+      "https://www.linkedin.com/in/somnath-duttaa/"
+    ],
+    "knowsAbout": ["Databricks","PySpark","Snowflake","Azure","Airflow","Kubernetes","Kafka","Data Modeling","Data Quality","LLMs","Generative AI"],
+    "worksFor": {"@type":"Organization","name":"Walmart Inc"},
+    "address": {"@type":"PostalAddress","addressLocality":"Bengaluru","addressRegion":"KA","addressCountry":"India"}
+  }
+  </script>
 </head>
 <body>
-
-    <header class="jumbotron jumbotron-fluid bg-dark text-light">
-        <div class="container">
-            <h1 class="display-4">Somnath Dutta</h1>
-            <p class="lead">Senior Data Engineer | Specialist Programmer</p>
-            <a href="#" class="btn btn-primary btn-lg">Download Resume</a>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">SD</div>
+          <div>
+            <strong>Somnath Dutta</strong><br>
+            <span class="tiny">Senior Data Engineer • Databricks • Snowflake • Azure</span>
+          </div>
         </div>
-    </header>
-
-    <section class="container py-5">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="https://images.unsplash.com/photo-1521117666236-9352272b4062?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" 
-                alt="Somnath Dutta" class="img-fluid rounded-circle mb-3">
-                <h2 class="mb-4">About Me</h2>
-                <p>I'm Somnath Dutta, a Specialist Programmer and Senior Data Engineer with a passion for building scalable and efficient data solutions. I excel at architecting and implementing data frameworks from end to end, focusing on data ingestion, processing, and analysis. I have a strong background in building scalable generic data ingestion frameworks via REST APIs.</p>
-                <p>My expertise lies in utilizing technologies like Spark, Databricks, Snowflake, Airflow, Kafka, MongoDB, Kubernetes, Rest APIs, Azure Data Services, and various DBMS to deliver impactful data solutions.</p>
-            </div>
-            <div class="col-md-6">
-                <h2 class="mb-4">Skills</h2>
-                <ul class="list-group">
-                    <li class="list-group-item"><i class="fas fa-code"></i> Spark</li>
-                    <li class="list-group-item"><i class="fas fa-database"></i> Databricks</li>
-                    <li class="list-group-item"><i class="fas fa-snowflake"></i> Snowflake</li>
-                    <li class="list-group-item"><i class="fas fa-rocket"></i> Airflow</li>
-                    <li class="list-group-item"><i class="fas fa-exchange-alt"></i> Kafka</li>
-                    <li class="list-group-item"><i class="fas fa-database"></i> MongoDB</li>
-                    <li class="list-group-item"><i class="fas fa-cubes"></i> Kubernetes</li>
-                    <li class="list-group-item"><i class="fas fa-network-wired"></i> Rest API</li>
-                    <li class="list-group-item"><i class="fas fa-cloud"></i> Azure Data Services</li>
-                    <li class="list-group-item"><i class="fas fa-database"></i> DBMS</li>
-                </ul>
-            </div>
+        <div class="nav-links tiny">
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#contact">Contact</a>
         </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div data-animate class="delay-1">
+        <span class="tag">Available for Senior Data Engineering roles</span>
+        <h1>Building scalable data platforms, <br>real‑time pipelines & AI‑driven analytics</h1>
+        <p class="lead">6+ years across Retail, E‑commerce & Energy. I design CDPs, data quality frameworks, and high‑throughput services on Databricks, Snowflake & Azure. Trainer & mentor to 100+ engineers. Hackathon winner. Azure DP‑203 certified.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Contact Me</a>
+          <a class="btn" href="assets/Somnath_Dutta_CV.pdf" download>Download Résumé (PDF)</a>
+          <a class="btn" href="https://github.com/somhit15" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/somnath-duttaa/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="chips">
+          <span class="chip">Databricks (PySpark)</span>
+          <span class="chip">Snowflake</span>
+          <span class="chip">Azure • ADLS • Synapse</span>
+          <span class="chip">Airflow</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">Kafka</span>
+          <span class="chip">LLMs • GenAI</span>
+        </div>
+      </div>
+      <div class="hero-card" data-animate>
+        <h3 style="margin-top:0">Snapshot</h3>
+        <ul class="list">
+          <li><strong>Current:</strong> Senior Data Engineer, Walmart Inc (Jun 2024 – Present)</li>
+          <li><strong>Previous:</strong> Vuori (Oct 2023 – Jun 2024), Five Below (Aug 2019 – Sep 2023), Infosys</li>
+          <li><strong>Highlights:</strong> 225M+ records ingestion • ~50% latency reduction • ~$12M/yr energy savings</li>
+          <li><strong>Training:</strong> Mentored & trained 100+ engineers on PySpark, Databricks & Azure</li>
+          <li><strong>Location:</strong> Bengaluru, KA, India (open to remote)</li>
+        </ul>
+      </div>
     </section>
 
-    <section class="bg-light py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">My Projects</h2>
-            <div class="row">
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow-sm rounded"> 
-                        <div class="card-body p-4"> 
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
-                                    class="img-fluid rounded" alt="Project 1">
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="card-title mb-3">Scalable Data Ingestion Framework</h5>
-                                    <p class="card-text">Developed a REST API-based data ingestion framework for efficient and scalable data loading. Utilized technologies like Spark and Kafka to ensure high throughput and reliability.</p>
-                                    <a href="#" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow-sm rounded"> 
-                        <div class="card-body p-4"> 
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img src="https://images.unsplash.com/photo-1542831371-294d0d21650b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
-                                    class="img-fluid rounded" alt="Project 2">
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="card-title mb-3">Real-time Data Analysis Platform</h5>
-                                    <p class="card-text">Implemented a real-time data analysis platform using Spark Streaming and Kafka for near-instant insights. Developed dashboards using Databricks for interactive visualization.</p>
-                                    <a href="#" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow-sm rounded"> 
-                        <div class="card-body p-4"> 
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <img src="https://images.unsplash.com/photo-1551288049-5c44b1d4b004?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" 
-                                    class="img-fluid rounded" alt="Project 3">
-                                </div>
-                                <div class="col-md-8">
-                                    <h5 class="card-title mb-3">Data Warehouse Optimization</h5>
-                                    <p class="card-text">Optimized data warehouse performance by leveraging Snowflake's advanced features and best practices. Implemented data partitioning and indexing strategies for efficient data retrieval.</p>
-                                    <a href="#" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item card">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <h3>Walmart Inc — Senior Data Engineer</h3>
+            <span class="pill">Jun 2024 – Present</span>
+          </div>
+          <ul class="list">
+            <li>Designed a <strong>Kubernetes‑hosted REST ingestion platform</strong> processing <strong>225M+ records</strong>; reduced end‑to‑end latency by ~50%.</li>
+            <li>Built <strong>Enterprise Data Platform</strong> & <strong>multi‑dimensional Data Quality framework</strong>; defects reduced by ~60%.</li>
+            <li>POCs across metadata modules, archival, Snowflake integration and MongoDB/Spark tuning → ~30% compute cost reduction.</li>
+            <li>Implemented <strong>event‑driven Airflow</strong> schedules; trimmed redundant runs; CAB releases with &lt;2% defect leakage.</li>
+            <li><em>Mentored 100+ engineers</em> on PySpark, Databricks, Azure & production best practices.</li>
+          </ul>
+          <div class="tiny muted">Stack: Databricks (PySpark), Snowflake, Airflow, Kubernetes, MongoDB, Azure, Git/Azure DevOps</div>
         </div>
+
+        <div class="timeline-item card">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <h3>Vuori — Data Engineer (Consultant)</h3>
+            <span class="pill">Oct 2023 – Jun 2024</span>
+          </div>
+          <ul class="list">
+            <li>Architected a <strong>Customer Data Platform (CDP)</strong> on Snowflake; integrated <strong>Klaviyo, Shopify, Attentive, Google Ads & Meta Ads</strong>.</li>
+            <li>Built incremental ETL pipelines & delivered SQL‑based campaign analytics (≈15% ROI uplift).</li>
+            <li>Created reusable, <strong>metadata‑driven pipelines</strong> improving team productivity (~25%).</li>
+          </ul>
+          <div class="tiny muted">Stack: Databricks, PySpark, Snowflake, Airflow, SQL</div>
+        </div>
+
+        <div class="timeline-item card">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <h3>Five Below — Data Engineer</h3>
+            <span class="pill">Aug 2019 – Sep 2023</span>
+          </div>
+          <ul class="list">
+            <li>Developed <strong>virtual energy meters</strong> across <strong>1,000+ stores</strong>, enabling ~$12M/yr savings.</li>
+            <li>Engineered <strong>near real‑time aggregation</strong> & validation for IoT‑like device streams.</li>
+            <li>Built <strong>metadata‑driven reader/writer modules</strong> and event‑driven Airflow orchestration.</li>
+          </ul>
+          <div class="tiny muted">Stack: Databricks, PySpark, Azure, Airflow, Kafka</div>
+        </div>
+
+        <div class="timeline-item card">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <h3>Infosys — Specialist Programmer / Technology Analyst</h3>
+            <span class="pill">2019 – 2023</span>
+          </div>
+          <ul class="list">
+            <li>Automated Azure infra provisioning (IaC) to reduce deployment cycle time by ~70%.</li>
+            <li>Conducted trainings on PySpark, Databricks, ADLS & Spark optimization; led internal POCs.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section class="bg-dark text-light py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Get in Touch</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-4">Feel free to reach out for any inquiries or collaboration opportunitie.</p>
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="text-light"><i class="fab fa-github"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="text-light"><i class="fas fa-envelope"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <form>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">Selected Projects & Innovation</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>AI‑Powered SQL Chatbot</h3>
+          <p class="muted">Spark + LLM chatbot that converts natural language to SQL; integrates with enterprise warehouse to return tables & charts for self‑serve analytics.</p>
+          <ul class="list">
+            <li>Built core NL→SQL logic; added REST APIs & auth.</li>
+            <li>Enabled non‑technical users to query securely, at scale.</li>
+          </ul>
+          <div class="tiny muted">Tech: Databricks, PySpark, LLMs (OpenAI/Gemini), SQL, REST</div>
+        </article>
+        <article class="card">
+          <h3>Notebook Summarizer (AI + Gemini API)</h3>
+          <p class="muted">Generates plain‑language documentation for Databricks notebooks and publishes to Confluence.</p>
+          <ul class="list">
+            <li>Reduced documentation effort by ~60%.</li>
+            <li>Improved cross‑team collaboration & onboarding.</li>
+          </ul>
+          <div class="tiny muted">Tech: Python, Gemini API, Databricks, Confluence API</div>
+        </article>
+        <article class="card">
+          <h3>Customer Data Platform (Vuori)</h3>
+          <p class="muted">CDP integrating Klaviyo, Shopify, Attentive, Google Ads & Meta Ads into Snowflake with incremental pipelines.</p>
+          <ul class="list">
+            <li>Delivered campaign analytics (≈15% ROI uplift).</li>
+            <li>Metadata‑driven ETL for reusability & scale.</li>
+          </ul>
+          <div class="tiny muted">Tech: Databricks, PySpark, Snowflake, Airflow, SQL</div>
+        </article>
+        <article class="card">
+          <h3>Energy Optimization via Virtual Meters</h3>
+          <p class="muted">Virtual meters across 1,000+ stores enabling granular energy insights and ~$12M annual savings.</p>
+          <ul class="list">
+            <li>Near real‑time aggregation & anomaly detection.</li>
+          </ul>
+          <div class="tiny muted">Tech: Databricks, PySpark, Azure, Kafka, Airflow</div>
+        </article>
+      </div>
+    </section>
 
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Core</h3>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Scala</span><span class="chip">SQL</span>
+            <span class="chip">Databricks</span><span class="chip">PySpark</span><span class="chip">Snowflake</span>
+            <span class="chip">Airflow</span><span class="chip">Kubernetes</span><span class="chip">Docker</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Cloud & Data</h3>
+          <div class="chips">
+            <span class="chip">Azure</span><span class="chip">ADLS</span><span class="chip">Synapse</span>
+            <span class="chip">BigQuery</span><span class="chip">MongoDB</span><span class="chip">Delta Lake</span>
+            <span class="chip">Unity Catalog</span><span class="chip">Azure DevOps</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI / ML</h3>
+          <div class="chips">
+            <span class="chip">LLMs</span><span class="chip">Generative AI</span><span class="chip">Prompt Engineering</span>
+            <span class="chip">OpenAI API</span><span class="chip">Gemini API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+      <h2 class="section-title">Achievements</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <ul class="list">
+            <li><strong>AIR 4</strong> — Celebal Databricks Hackathon</li>
+            <li><strong>Winner</strong> — Triple Double Hackathon (Five Below): NLP chatbot for SQL</li>
+            <li><strong>Runner‑up</strong> — Musgrave Hackathon: AI‑powered recipe generator</li>
+            <li><strong>Top 6</strong> — DNA Databricks Hackathon</li>
+            <li><strong>Platinum Club</strong> — Infosys Top 1%</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Certifications</h3>
+          <ul class="list">
+            <li>DP‑203 — Azure Data Engineer Associate</li>
+            <li>AI‑900 — Azure AI Fundamentals</li>
+            <li>DP‑900 — Azure Data Fundamentals</li>
+            <li>AZ‑900 — Azure Fundamentals</li>
+            <li>MongoDB SI Associate</li>
+            <li class="muted">Infosys internal: Applied GenAI, Python, Spark, Big Data, Kafka, MySQL</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Let’s build something.</h3>
+          <p class="muted">Open to Senior/Lead Data Engineer roles, platform engineering, and AI‑data integrations. Remote or Dallas‑Fort Worth onsite.</p>
+          <p><strong>Email:</strong> <a href="mailto:somhit15@gmail.com">somhit15@gmail.com</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/somhit15" target="_blank" rel="noopener">github.com/somhit15</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/somnath-duttaa/" target="_blank" rel="noopener">linkedin.com/in/somnath-duttaa</a></p>
+        </div>
+        <div class="card">
+          <h3>Quick note</h3>
+          <form action="mailto:somhit15@gmail.com" method="post" enctype="text/plain">
+            <div style="display:grid;gap:12px">
+              <input required name="name" placeholder="Your name" style="padding:12px;border-radius:10px;border:1px solid #1f2937;background:#0b1220;color:#e5e7eb">
+              <input required type="email" name="email" placeholder="Your email" style="padding:12px;border-radius:10px;border:1px solid #1f2937;background:#0b1220;color:#e5e7eb">
+              <textarea required name="message" rows="5" placeholder="Message" style="padding:12px;border-radius:10px;border:1px solid #1f2937;background:#0b1220;color:#e5e7eb"></textarea>
+              <button class="btn primary" type="submit">Send</button>
+            </div>
+          </form>
+          <p class="tiny muted" style="margin-top:8px">Tip: For production forms, replace the mailto action with a form service (e.g., GitHub Forms, Netlify, Formspree).</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>
+        <div class="tiny">© <span id="y"></span> Somnath Dutta. Built with vanilla HTML/CSS. Hosted on GitHub Pages.</div>
+        <div class="tiny">Résumé link points to <code>assets/Somnath_Dutta_CV.pdf</code>. Place your latest PDF there.</div>
+      </div>
+      <div class="social tiny" style="text-align:right">
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
